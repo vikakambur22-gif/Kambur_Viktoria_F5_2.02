@@ -1,0 +1,778 @@
+# Практична робота № 1
+
+**Дисципліна:** Основи побудови інформаційних систем та мереж
+
+**Тема:** Спостереження за процесом звернення до вебресурсу. Побудова власної моделі рівнів взаємодії
+
+| | |
+|---|---|
+| **Прізвище, ім'я** | Камбур Вікторія |
+| **Група** | 2.02|
+| **Номер варіанта** | 11 |
+| **Домен варіанта** | openssl.org |
+| **Середовище виконання** | Windows |
+| **Версія curl** | *(curl 8.21.0 (Windows) libcurl/8.21.0 Schannel zlib/1.3.2 WinIDN WinLDAP)* |
+| **Дата виконання** | 20.09.2026|
+
+---
+
+## Частина A. Збір експериментальних даних
+
+### A.1. Запит із діагностичним виводом
+
+**Команда:**
+
+```
+curl.exe -v https://openssl.org
+```
+
+**Вивід:**
+
+```
+* Host openssl.org:443 was resolved.
+* IPv6: (none)
+* IPv4: 34.49.79.89
+*   Trying 34.49.79.89:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* ALPN: server accepted http/1.1
+* Established connection to openssl.org (34.49.79.89 port 443) from 192.168.0.105 port 63409
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: openssl.org
+> User-Agent: curl/8.21.0
+> Accept: */*
+>
+* Request completely sent off
+* schannel: remote party requests renegotiation
+* schannel: renegotiating SSL/TLS connection
+* schannel: SSL/TLS connection renegotiated
+< HTTP/1.1 200 OK
+< x-guploader-uploadid: AJjja9Z4HBo6J6znRImiJ8irWkvaYs24emQ5zALal9mXxp-6giPT9hGVTOzJGo-5FuJiRZ_uwotzNm0
+< x-goog-generation: 1773234596883265
+< x-goog-metageneration: 27
+< x-goog-stored-content-encoding: identity
+< x-goog-stored-content-length: 7057
+< x-goog-meta-goog-reserved-file-mtime: 1788989563
+< x-goog-hash: crc32c=5zshHw==
+< x-goog-hash: md5=espRkH5CHPA5eiaXzQA8+Q==
+< x-goog-storage-class: STANDARD
+< accept-ranges: bytes
+< server: UploadServer
+< via: 1.1 google
+< date: Sun, 20 Sep 2026 18:25:26 GMT
+< Last-Modified: Wed, 11 Mar 2026 13:09:56 GMT
+< ETag: "7aca51907e421cf0397a2697cd003cf9"
+< Content-Type: text/html
+< Content-Length: 7057
+< Age: 0
+< Cache-Control: public,no-cache
+< X-Content-Type-Options: nosniff
+< X-Frame-Options: SAMEORIGIN
+< X-XSS-Protection: 1; mode=block
+< Referrer-Policy: strict-origin-when-cross-origin
+< Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+< Alt-Svc: h3=":443"; ma=2592000
+<
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+        <meta name="generator" content="Hugo 0.145.0">
+    <title>
+
+        OpenSSL
+
+    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+
+
+
+
+
+          <link rel="stylesheet" href="/css/main.abe249895d3af7f37653d265973a575e7fbd4ad64b517d07ffdc2b164fe3f42d.css" integrity="sha256-q&#43;JJiV069/N2U9JllzpXXn&#43;9StZLUX0H/9wrFk/j9C0=" crossorigin="anonymous" />
+
+
+
+
+
+
+
+
+
+
+
+      <link rel="stylesheet" href="/css/fontawesome.min.80a5cf80e4ba6d1ff172b4995ad5ce996071022227860700308ed797fbd150ad.css" integrity="sha256-gKXPgOS6bR/xcrSZWtXOmWBxAiInhgcAMI7Xl/vRUK0=" crossorigin="anonymous" />
+
+
+
+
+
+
+
+      <link rel="stylesheet" href="/css/brands.9c662012d93fb448c96f67697bbee60ae06d6552398ca9487dcc79df4a032eb3.css" integrity="sha256-nGYgEtk/tEjJb2dpe77mCuBtZVI5jKlIfcx530oDLrM=" crossorigin="anonymous" />
+
+
+
+
+
+
+
+      <link rel="stylesheet" href="/css/solid.40e9c76835b2f8346bf5a2dda24f8a0ec0624a4a2232ad15dad086f44a672772.css" integrity="sha256-QOnHaDWy&#43;DRr9aLdok&#43;KDsBiSkoiMq0V2tCG9EpnJ3I=" crossorigin="anonymous" />
+
+
+
+<link rel="alternate" type="application/rss+xml" href="https://openssl.org/index.xml" title="OpenSSL">
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <nav class="bg-white top-0 z-50">
+  <div class="container mx-auto px-4">
+
+    <div class="flex px-8 h-24 items-center justify-end">
+
+
+      <ul class="flex items-center space-x-4">
+
+
+
+
+
+              <li>
+                <a href="/faq/" class="inline-block py-2 px-3 text-lg hover:underline hover:decoration-dotted hover:underline-offset-4">
+                  FAQ
+                </a>
+              </li>
+
+
+
+
+
+
+              <li>
+                <a href="/about/" class="inline-block py-2 px-3 text-lg hover:underline hover:decoration-dotted hover:underline-offset-4">
+                  About
+                </a>
+              </li>
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+    <main class="flex-1 flex max-md:flex-col py-10 justify-center container px-4 mx-auto">
+      <div class="px-8 ">
+
+  <section>
+  <div class="container mx-auto px-4">
+    <div class="w-3/5 mx-auto rounded-full flex flex-col items-center justify-center text-center relative mb-24">
+      <p class="text-4xl font-light text-[#003d48] mb-8">
+        MISSION
+      </p>
+      <p class="text-3xl font-bold italic mb-4">
+        &ldquo;We believe everyone should have access to security and privacy tools,
+whoever they are, wherever they are or whatever their personal beliefs
+are, as a fundamental human right.&rdquo;
+      </p>
+        <a href="https://openssl-mission.org/" class="text-sm uppercase underline ml-auto">
+          Discover Our Mission
+        </a>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-12">
+        <section>
+          <div class="bg-white drop-shadow-[0_0px_10px_rgba(0,0,0,0.25)] rounded-lg p-6 text-center transition-all duration-300 hover:bg-[linear-gradient(180deg,_#fff_0%,_#fff_35%,_rgba(215,224,227,0.5)_100%)]">
+              <a href="https://openssl-library.org/" class="block mb-4">
+                <img class="w-full h-auto object-cover" src="/images/openssl_logo_library_393_265.png" alt="OpenSSL Library" />
+              </a>
+              <p class="text-3xl font-bold mb-2">OpenSSL Library</p>
+              <p>
+                <a href="https://openssl-library.org/" class="text-sm uppercase relative z-10">
+                  Learn more
+                </a>
+              </p>
+          </div>
+        </section>
+        <section>
+          <div class="bg-white drop-shadow-[0_0px_10px_rgba(0,0,0,0.25)] rounded-lg p-6 text-center transition-all duration-300 hover:bg-[linear-gradient(180deg,_#fff_0%,_#fff_35%,_rgba(215,224,227,0.5)_100%)]">
+              <a href="https://www.bouncycastle.org/" class="block mb-4">
+                <img class="w-full h-auto object-cover" src="/images/bouncy_castle.png" alt="Bouncy Castle" />
+              </a>
+              <p class="text-3xl font-bold mb-2">Bouncy Castle</p>
+              <p>
+                <a href="https://www.bouncycastle.org/" class="text-sm uppercase relative z-10">
+                  Learn more
+                </a>
+              </p>
+          </div>
+        </section>
+        <section>
+          <div class="bg-white drop-shadow-[0_0px_10px_rgba(0,0,0,0.25)] rounded-lg p-6 text-center transition-all duration-300 hover:bg-[linear-gradient(180deg,_#fff_0%,_#fff_35%,_rgba(215,224,227,0.5)_100%)]">
+              <a href="https://cryptlib.com/" class="block mb-4">
+                <img class="w-full h-auto object-cover" src="/images/cryptlib_logo_393_265.png" alt="Cryptlib" />
+              </a>
+              <p class="text-3xl font-bold mb-2">Cryptlib</p>
+              <p>
+                <a href="https://cryptlib.com/" class="text-sm uppercase relative z-10">
+                  Learn more
+                </a>
+              </p>
+          </div>
+        </section>
+    </div>
+  </div>
+</section>
+
+
+
+
+      </div>
+    </main>
+
+    <footer class="bg-neutral-100 text-lg text-neutral-400 pt-2 pb-8">
+  <div class="container px-4 mx-auto flex flex-col gap-4 items-center">
+    <ul class="icons">
+    </ul>
+
+    <ul class="text-center font-light flex flex-wrap max-sm:gap-2 max-sm:flex-col *:px-4.5 sm:divide-x-1 divide-neutral-300">
+          <li><a href="https://openssl.org">OpenSSL.org</a></li>
+          <li><a href="https://openssl-library.org">Library</a></li>
+          <li><a href="https://openssl-mission.org">Mission</a></li>
+          <li><a href="https://openssl-communities.org">Communities</a></li>
+          <li><a href="https://openssl-corporation.org">Corporation</a></li>
+          <li><a href="https://openssl.foundation">Foundation</a></li>
+          <li><a href="https://openssl-projects.org">Projects</a></li>
+          <li><a href="https://openssl-conference.org">Conference</a></li>
+    </ul>
+
+    <div class="py-2 font-light">
+      © 2026 OpenSSL. All rights reserved
+    </div>
+  </div>
+</footer>
+
+
+     <script defer async type="text/javascript" id="mp-loader" src="https://api.transpond.io/tracker?am=MzgyOTE%253D"></script>
+    <script>
+      document.addEventListener('click', function (event) {
+        const target = event.target.closest('a');
+        if (target && target.href) {
+          const url = target.href;
+          const url_path = target.href.replace(window.location.origin, '');
+          const fileExtensions = ['pdf', 'zip', 'jpg', 'png', 'docx', 'xlsx'];
+          const isDownload = target.hasAttribute('download') ||
+                  fileExtensions.some(ext => url.endsWith('.' + ext));
+
+          if (isDownload) {
+            manualTracking(url_path, '', '', '', '', '', '')
+          }
+        }
+      });
+    </script>
+
+
+
+
+
+  </body>
+</html>
+* Connection #0 to host openssl.org:443 left intact
+PS C:\Users\user>
+```
+
+---
+
+### A.2. Запит без захисту з'єднання
+
+**Команда:**
+
+```
+curl.exe -v http://neverssl.com
+```
+
+**Вивід:**
+
+```
+* Host neverssl.com:80 was resolved.
+* IPv6: (none)
+* IPv4: 34.223.124.45
+*   Trying 34.223.124.45:80...
+* Established connection to neverssl.com (34.223.124.45 port 80) from 192.168.0.105 port 63194
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: neverssl.com
+> User-Agent: curl/8.21.0
+> Accept: */*
+>
+* Request completely sent off
+< HTTP/1.1 200 OK
+< Date: Sun, 20 Sep 2026 18:40:21 GMT
+< Server: Apache/2.4.68 ()
+< Upgrade: h2,h2c
+< Connection: Upgrade
+< Last-Modified: Wed, 29 Jun 2022 00:23:33 GMT
+< ETag: "f79-5e28b29d38e93"
+< Accept-Ranges: bytes
+< Content-Length: 3961
+< Vary: Accept-Encoding
+< Content-Type: text/html; charset=UTF-8
+<
+<html>
+        <head>
+                <title>NeverSSL - Connecting ... </title>
+                <style>
+                body {
+                        font-family: Montserrat, helvetica, arial, sans-serif;
+                        font-size: 16x;
+                        color: #444444;
+                        margin: 0;
+                }
+                h2 {
+                        font-weight: 700;
+                        font-size: 1.6em;
+                        margin-top: 30px;
+                }
+                p {
+                        line-height: 1.6em;
+                }
+                .container {
+                        max-width: 650px;
+                        margin: 20px auto 20px auto;
+                        padding-left: 15px;
+                        padding-right: 15px
+                }
+                .header {
+                        background-color: #42C0FD;
+                        color: #FFFFFF;
+                        padding: 10px 0 10px 0;
+                        font-size: 2.2em;
+                }
+                .notice {
+                        background-color: red;
+                        color: white;
+                        padding: 10px 0 10px 0;
+                        font-size: 1.25em;
+                        animation: flash 4s infinite;
+                }
+                @keyframes flash {
+                0% {
+                        background-color: red;
+                }
+                50% {
+                        background-color: #AA0000;
+                }
+                0% {
+                        background-color: red;
+                }
+                }
+                <!-- CSS from Mark Webster https://gist.github.com/markcwebster/9bdf30655cdd5279bad13993ac87c85d -->
+                </style>
+
+                <script>
+                        var adjectives = [ 'cool' , 'calm' , 'relaxed', 'soothing', 'serene', 'slow',
+                                                        'beautiful', 'wonderful', 'wonderous', 'fun', 'good',
+                                                        'glowing', 'inner', 'grand', 'majestic', 'astounding',
+                                                        'fine', 'splendid', 'transcendent', 'sublime', 'whole',
+                                                        'unique', 'old', 'young', 'fresh', 'clear', 'shiny',
+                                                        'shining', 'lush', 'quiet', 'bright', 'silver' ];
+
+                        var nouns =       [ 'day', 'dawn', 'peace', 'smile', 'love', 'zen', 'laugh',
+                                                        'yawn', 'poem', 'song', 'joke', 'verse', 'kiss', 'sunrise',
+                                                        'sunset', 'eclipse', 'moon', 'rainbow', 'rain', 'plan',
+                                                        'play', 'chart', 'birds', 'stars', 'pathway', 'secret',
+                                                        'treasure', 'melody', 'magic', 'spell', 'light', 'morning'];
+
+                        var prefix =
+                                        // Choose 3 zen adjectives
+                                        adjectives.sort(function(){return 0.5-Math.random()}).slice(-3).join('')
+                                        +
+                                        // Coupled with a zen noun
+                                        nouns.sort(function(){return 0.5-Math.random()}).slice(-1).join('');
+                        window.location.href = 'http://' + prefix + '.neverssl.com/online';
+                </script>
+        </head>
+        <body>
+        <noscript>
+                <div class="notice">
+                        <div class="container">
+                                ⚠️ JavaScript appears to be disabled. NeverSSL's cache-busting works better if you enable JavaScript for <code>neverssl.com</code>.
+                        </div>
+                </div>
+        </noscript>
+        <div class="header">
+                <div class="container">
+                <h1>NeverSSL</h1>
+                </div>
+        </div>
+        <div class="content">
+        <div class="container">
+
+        <h1 id="status"></h1>
+        <script>document.querySelector("#status").textContent = "Connecting ...";</script>
+        <noscript>
+
+                <h2>What?</h2>
+                <p>This website is for when you try to open Facebook, Google, Amazon, etc
+                on a wifi network, and nothing happens. Type "http://neverssl.com"
+                into your browser's url bar, and you'll be able to log on.</p>
+
+                <h2>How?</h2>
+                <p>neverssl.com will never use SSL (also known as TLS). No
+                encryption, no strong authentication, no <a
+                href="https://en.wikipedia.org/wiki/HTTP_Strict_Transport_Security">HSTS</a>,
+                no HTTP/2.0, just plain old unencrypted HTTP and forever stuck in the dark
+                ages of internet security.</p>
+
+                <h2>Why?</h2>
+                <p>Normally, that's a bad idea. You should always use SSL and secure
+                encryption when possible. In fact, it's such a bad idea that most websites
+                are now using https by default.</p>
+
+                <p>And that's great, but it also means that if you're relying on
+                poorly-behaved wifi networks, it can be hard to get online.  Secure
+                browsers and websites using https make it impossible for those wifi
+                networks to send you to a login or payment page. Basically, those networks
+                can't tap into your connection just like attackers can't. Modern browsers
+                are so good that they can remember when a website supports encryption and
+                even if you type in the website name, they'll use https.</p>
+
+                <p>And if the network never redirects you to this page, well as you can
+                see, you're not missing much.</p>
+
+        <a href="https://twitter.com/neverssl">Follow @neverssl</a>
+
+        </noscript>
+
+        </div>
+        </div>
+
+        </body>
+</html>
+* Connection #0 to host neverssl.com:80 left intact
+```
+
+---
+
+### A.3. Запит до служби доменних імен
+
+*Windows: `Resolve-DnsName openssl.org`*
+
+**Команда (перше виконання):**
+
+```
+dig openssl.org
+```
+
+**Вивід:**
+
+```
+
+Name                                           Type   TTL   Section    IPAddress
+----                                           ----   ---   -------    ---------
+openssl.org                                    AAAA   2467  Answer     2600:1901:0:d50b::
+openssl.org                                    A      2467  Answer     34.49.79.89
+```
+
+**Команда (повторне виконання через 5–7 хвилин):**
+
+```
+dig openssl.org
+```
+
+**Вивід:**
+
+```
+
+Name                                           Type   TTL   Section    IPAddress
+----                                           ----   ---   -------    ---------
+openssl.org                                    AAAA   2129  Answer     2600:1901:0:d50b::
+openssl.org                                    A      2129  Answer     34.49.79.89
+```
+
+**Зафіксовані значення:**
+
+| Параметр | Перше виконання | Повторне виконання |
+|---|---|---|
+| Час виконання (год:хв) | 21:44 | 21:50 |
+| IP-адреса | 34.49.79.89 | 34.49.79.89 |
+| Значення TTL | 2467 | 2129 |
+
+> Якщо друге значення TTL виявилося більшим за перше — це нормально: кеш резолвера встиг оновитися. Зафіксуйте як є.
+
+---
+
+### A.4. Контрольний ресурс
+
+**Команда:**
+
+```
+curl -v https://google.com
+```
+
+**Вивід:**
+
+```
+* Host google.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 142.251.98.139, 142.251.98.100, 142.251.98.101, 142.251.98.102, 142.251.98.113, 142.251.98.138
+*   Trying 142.251.98.139:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* ALPN: server accepted http/1.1
+* Established connection to google.com (142.251.98.139 port 443) from 192.168.0.105 port 60940
+* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: google.com
+> User-Agent: curl/8.21.0
+> Accept: */*
+>
+* Request completely sent off
+* schannel: remote party requests renegotiation
+* schannel: renegotiating SSL/TLS connection
+* schannel: SSL/TLS connection renegotiated
+< HTTP/1.1 301 Moved Permanently
+< Location: https://www.google.com/
+< Content-Type: text/html; charset=UTF-8
+< Content-Security-Policy-Report-Only: object-src 'none';base-uri 'self';script-src 'nonce-LWvQx_aalgn5bTbcy6YY6w' 'strict-dynamic' 'report-sample' 'unsafe-eval' 'unsafe-inline' https: http:;report-uri https://csp.withgoogle.com/csp/gws/other-hp
+< Date: Sun, 20 Sep 2026 19:02:02 GMT
+< Expires: Tue, 20 Oct 2026 19:02:02 GMT
+< Cache-Control: public, max-age=2592000
+< Server: gws
+< Content-Length: 220
+< X-XSS-Protection: 0
+< X-Frame-Options: SAMEORIGIN
+< Alt-Svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+<
+<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
+<TITLE>301 Moved</TITLE></HEAD><BODY>
+<H1>301 Moved</H1>
+The document has moved
+<A HREF="https://www.google.com/">here</A>.
+</BODY></HTML>
+* Connection #0 to host google.com:443 left intact
+```
+
+---
+
+### A.5. Ресурси з некоректною конфігурацією сертифіката
+
+**Випадок 1**
+
+```
+curl -v https://expired.badssl.com
+```
+
+```
+* Host expired.badssl.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 104.154.89.105
+*   Trying 104.154.89.105:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* schannel: next InitializeSecurityContext failed: SEC_E_CERT_EXPIRED (0x80090328) - Получен сертификат с истекшим сроком действия.
+* closing connection #0
+curl: (35) schannel: next InitializeSecurityContext failed: SEC_E_CERT_EXPIRED (0x80090328) - Получен сертификат с истекшим сроком действия.
+```
+
+**Випадок 2**
+
+```
+curl -v https://wrong.host.badssl.com
+```
+
+```
+* Host wrong.host.badssl.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 104.154.89.105
+*   Trying 104.154.89.105:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* schannel: SNI or certificate check failed: SEC_E_WRONG_PRINCIPAL (0x80090322) - Главное конечное имя неверно.
+* closing connection #0
+curl: (60) schannel: SNI or certificate check failed: SEC_E_WRONG_PRINCIPAL (0x80090322) - Главное конечное имя неверно.
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the webpage mentioned above.
+```
+
+**Випадок 3**
+
+```
+curl -v https://self-signed.badssl.com
+```
+
+```
+* Host self-signed.badssl.com:443 was resolved.
+* IPv6: (none)
+* IPv4: 104.154.89.105
+*   Trying 104.154.89.105:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - Цепочка сертификатов выпущена центром сертификации, не имеющим доверия.
+* closing connection #0
+curl: (60) schannel: SEC_E_UNTRUSTED_ROOT (0x80090325) - Цепочка сертификатов выпущена центром сертификации, не имеющим доверия.
+More details here: https://curl.se/docs/sslcerts.html
+
+curl failed to verify the legitimacy of the server and therefore could not
+establish a secure connection to it. To learn more about this situation and
+how to fix it, please visit the webpage mentioned above.
+```
+
+> Якщо використано альтернативний спосіб із параметром `--resolve` — зазначити це та навести фактичну команду.
+
+---
+
+## Частина B. Власна модель рівнів
+
+**Кількість виділених груп:** ___
+
+| № | Назва групи (власне формулювання) | Рядки виводу, віднесені до групи | Обґрунтування |
+|---|---|---|---|
+| 1 | Прикладний рівень: HTTP-взаємодія | > GET / HTTP/1.1 > Host: openssl.org > User-Agent: curl/8.21.0 > Accept: */* < HTTP/1.1 200 OK < Location: https://www.google.com/ | Містить безпосередньо дані HTTP-запиту та відповіді вебсервера: метод, адресу ресурсу, User-Agent, тип прийняття даних і код відповіді. |
+| 2 | Представлення та захист даних | ALPN: curl offers http/1.1 ALPN: server accepted http/1.1 schannel: remote party requests renegotiation schannel: renegotiating SSL/TLS connection schannel: SSL/TLS connection renegotiated | Ці рядки описують узгодження протоколу та роботу механізмів SSL/TLS, які забезпечують захист переданих даних. |
+| 3 | Встановлення та підтримання з'єднання | Established connection to openssl.org (34.49.79.89 port 443) from 192.168.0.105 port 63409 Established connection to neverssl.com (34.223.124.45 port 80) from 192.168.0.105 port 63194 | Фіксують факт встановлення мережевого з'єднання між локальним комп'ютером і віддаленим сервером, а також використовувані порти. |
+| 4 | Транспортний рівень | Trying 34.49.79.89:443... Trying 34.223.124.45:80... Trying 104.154.89.105:443... | Тут видно звернення до конкретного IP та порту сервера. Порт 443 використовується для HTTPS, а 80 — для HTTP. |
+| 5 | Мережевий рівень та IP-адресація | Host openssl.org:443 was resolved. IPv4: 34.49.79.89 IPv4: 34.223.124.45 IPv4: 104.154.89.105 IPv4: 142.251.98.139, ... IPv6: (none) | Відображає перетворення доменного імені на IP-адресу та використання IPv4/IPv6. |
+| 6 | Розпізнавання доменних імен (DNS) | openssl.org AAAA 2467 ... 2600:1901:0:d50b:: openssl.org A 2467 ... 34.49.79.89 openssl.org AAAA 2129 ... openssl.org A 2129 ... | Результати dig показують DNS-записи типів A та AAAA і значення TTL. Саме DNS забезпечує отримання IP-адреси за доменним ім'ям |
+| 7 | Фізичне та локальне мережеве середовище | from 192.168.0.105 | Рядок містить локальну IP-адресу комп'ютера, що дає інформацію про його положення у локальній мережі. Даних про MAC-адресу, кабель, Wi-Fi-сигнал або фізичне середовище у виводі немає, тому додаткові рядки сюди не відносимо. |
+
+*Групи впорядковано від найближчої до користувача (№ 1) до найближчої до апаратного забезпечення. Зайві рядки вилучити, за потреби — додати.*
+
+**Рядки, які не вдалося віднести до жодної групи:**
+
+| Рядок виводу | Причина утруднення |
+|---|---|
+| Content-Length, Content-Type, Cache-Control, ETag та інші HTTP-заголовки | Це службові параметри HTTP-відповіді, які в цій моделі не виділяються в окрему групу. |
+| HTML-код сторінок openssl.org і `neverssl.com | Це вже вміст вебсторінки, а не діагностична інформація про встановлення мережевого з'єднання. |
+| CSS та JavaScript-код сторінок | Не містять необхідних для побудови моделі мережевих діагностичних даних. |
+| Повідомлення про помилки сертифікатів SEC_E_CERT_EXPIRED, SEC_E_WRONG_PRINCIPAL, SEC_E_UNTRUSTED_ROOT | Вони характеризують помилки TLS-сертифікації, але не є окремим рівнем моделі. Їх можна розглядати як додаткові діагностичні повідомлення групи 2. |
+
+---
+
+## Контрольні питання
+
+**1. Скільки рядків діагностичного виводу передує отриманню даних сторінки (завдання A.1)?**
+
+> 41 рядок діагностичного виводу передує отриманню HTML-даних сторінки. Самі дані сторінки починаються з рядка < !DOCTYPE html> / <!DOCTYPE html>.
+
+**2. Які рядки наявні у виводі A.1 і відсутні у виводі A.2? Чим це зумовлено?**
+
+> У А.1 наявні рядки, пов'язані з TLS/SSL, зокрема:
+
+schannel: remote party requests renegotiation;
+schannel: renegotiating SSL/TLS connection;
+schannel: SSL/TLS connection renegotiated;
+ALPN: curl offers http/1.1;
+ALPN: server accepted http/1.1.
+
+У А.2 цих рядків немає, тому що А.1 використовує HTTPS (порт 443), а А.2 — звичайний HTTP (порт 80) без шифрування.
+
+**3. Звідки у виводі з'явилося значення `443`, якщо його не було вказано в адресі?**
+
+> Значення 443 — це стандартний порт протоколу HTTPS. Оскільки в команді використано https://openssl.org, curl автоматично визначив порт 443.
+
+**4. Як змінилося значення TTL між двома запитами (A.3)? Що означає це число?**
+
+> Значення TTL змінилося:
+
+2467 → 2129
+
+Тобто:
+
+2467 − 2129 = 338 секунд.
+
+TTL (Time To Live) — це час у секундах, протягом якого DNS-запис може зберігатися в кеші резолвера до його оновлення. При цьому IP-адреса 34.49.79.89 залишилася незмінною.
+
+**5. Чим відрізняються між собою три причини помилок із завдання A.5? Сформулювати кожну однією фразою.**
+
+| Випадок | Причина недовіри |
+|---|---|
+| `expired` | Сертифікат має прострочений термін дії. |
+| `wrong.host` | Ім’я сервера не відповідає імені, зазначеному в сертифікаті. |
+| `self-signed` | Сертифікат підписаний самим собою та походить від недовіреного центру сертифікації. |
+
+**6. Три рядки з власних виводів, про які не йшлося на лекції 1:**
+
+| № | Рядок виводу | Джерело (номер завдання) |
+|---|---|---|
+| 1 | x-goog-generation: 1773234596883265 | А1 |
+| 2 | x-goog-storage-class: STANDARD | А1 |
+| 3 | Alt-Svc: h3=":443"; ma=2592000 | А1 |
+
+*Пояснення до цих рядків не потрібне.*
+
+---
+
+## Висновки
+
+*150–300 слів. Спиратися на власні спостереження, а не на матеріал лекції.*
+
+**D.1. Що виявилося неочевидним або несподіваним**
+
+*Назвати конкретно, з посиланням на рядок виводу.*
+
+> Під час виконання роботи для мене було неочевидним, скільки додаткової інформації можна побачити у звичайному запиті через curl -v. Наприклад, у виводі А.1 я побачила рядок x-goog-storage-class: STANDARD, хоча раніше не звертала уваги на такі службові заголовки. Також несподіваним було те, що при введенні адреси https://openssl.org порт 443 автоматично визначається програмою, хоча я його окремо не вказувала. Ще я звернула увагу на те, що під час повторного DNS-запиту IP-адреса залишилася 34.49.79.89, а значення TTL зменшилося з 2467 до 2129.
+
+**D.2. Чому саме така кількість груп у частині B**
+
+*На якій підставі ухвалено рішення. Що змусило б його змінити.*
+
+> У частині B я виділила 7 груп, тому що у виводах можна побачити різні етапи роботи мережі: визначення IP-адреси, встановлення з’єднання, використання портів, HTTP-запит і відповідь, роботу TLS та DNS. Спочатку деякі рядки було складно віднести тільки до однієї групи, оскільки вони пов’язані одразу з декількома процесами. Тому я розподіляла їх за тим, яку основну функцію вони виконують. Саме це найбільше вплинуло на остаточний поділ.
+
+**D.3. Питання, яке залишилося без відповіді**
+
+> Після виконання роботи в мене залишилося питання: чому під час HTTPS-з’єднання сервер може запитувати повторне узгодження SSL/TLS (schannel: remote party requests renegotiation) і в яких випадках це необхідно?
+
+---
+
+## Використання штучного інтелекту
+
+*Розділ обов'язковий. Заповнюється незалежно від того, чи використовувався ШІ. Детальні вимоги — у документі «Політика використання технологій штучного інтелекту».*
+
+**Факт використання:** використано *(потрібне залишити)*
+
+**Установлений рівень для цієї роботи:** Р3 — ШІ як співвиконавець
+
+**Фактичний рівень використання:** Р3 
+
+### Використані системи
+
+| Система | Версія або модель | Період використання |
+|---|---|---|
+| ChatGPT  | GPT-5.6 Luna | 20.09.2026 |
+
+### Промпти
+
+*Наводити дослівно, у тому вигляді, у якому запит було надано системі. Переказ не приймається.*
+
+| № | Розділ роботи | Текст промпта |
+|---|---|---|
+| 1 | Частина B | допоможи з цією частиною |
+| 2 | Контрольні питання №3 | поясни це питання |
+| 3 | Висновки | допоможи сформулювати думку. |
+
+### Дії з отриманим результатом
+
+| № промпта | Що перевірено | Що змінено | Що відхилено і чому |
+|---|---|---|---|
+| 1 | Чи підходить до моїх даних | Змінила окремі формулювання | Те, що не відповідало моєму виводу |
+| 2 | Чи правильна відповідь | Зробила відповідь коротшою | Зайву інформацію |
+| 3 | Чи відповідає моїй роботі | Переписала своїми словами | Те, що не стосувалося моїх результатів |
+
+### Підтвердження
+
+Підтверджую, що всі наведені в цьому звіті виводи команд отримано мною особисто внаслідок фактичного виконання відповідних дій, а відомості цього розділу є повними та достовірними.
+
+> Виводи `curl`, `dig` та інші артефакти не можуть бути згенеровані. Це стосується будь-якого рівня використання ШІ.
+
+---
+
+## Примітки виконавця
+
+*(необов'язковий розділ: що не спрацювало, які команди довелося змінити, які виникли труднощі)*
+> 
